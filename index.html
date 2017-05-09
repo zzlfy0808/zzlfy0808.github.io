@@ -173,6 +173,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-5-19-aboutpython" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/09/5-19-aboutpython/">关于Python中生成器用法的杨辉三角问题</a>
+    </h1>
+  
+
+        <a href="/2017/05/09/5-19-aboutpython/" class="archive-article-date">
+  	<time datetime="2017-05-09T07:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-09</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="之前学习了廖雪峰老师的Python3教程"><a href="#之前学习了廖雪峰老师的Python3教程" class="headerlink" title="之前学习了廖雪峰老师的Python3教程"></a>之前学习了<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">廖雪峰老师的Python3教程</a></h1><p>在学习生成器时遇到了杨辉三角问题，在过程中有所收获,记录下来</p>
+<blockquote>
+<p>关于杨辉三角的定义参考此链接<a href="http://baike.baidu.com/item/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92" target="_blank" rel="external">杨辉三角</a></p>
+</blockquote>
+<p>在网上发现一份代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">def triangles():</div><div class="line">    N = [1]</div><div class="line">    while True:</div><div class="line">        yield N</div><div class="line">        #print(N)</div><div class="line">        N.append(0)</div><div class="line">        N = [N[i]+N[i-1] for i in range(len(N))]</div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    n = 0</div><div class="line">    for t in triangles():</div><div class="line">        print(t)</div><div class="line">        n = n + 1</div><div class="line">        if n == 11:</div><div class="line">            break</div></pre></td></tr></table></figure></p>
+<p>在一开始的我始终不能理解<strong>N = [N[i]+N[i-1] for i in range(len(N))]</strong>这句，这份答案使用的技术都是<br>我之前学习到的，但是自己没有能写出来，以下是程序的运行顺序<br>1行，定义函数<br>2行，给N赋值<br>4行，函数遇到yield返回N=[1]<br>5行，给N添加一个元素，此时N=[1，0]<br>6行，高潮来啦，还是分开讲，range(len(N))=[0,1],<br>so, N = [N[i-1]+N[i] for i in [0,1]]<br>so, N = [N[0-1]+N[0] , N[1-1]+N[1]]<br>so, N = [0+1 , 1+0] = [1,1]<br>这样，杨辉三角的第二行就出来啦！<br>**注意，这里面的N[i]其实就是N的list，之前还以为是通过i循环获得的一个list[0,1][0,1,2]<br>其实这里面的i就是告诉N 第一排就是rang(0) 以此类推，好几天没想明白。做个提醒</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list">
+			 
+        <li class="article-tag-list-item">
+        	<a href="javascript:void(0)" class="article-tag-list-link color1">technology</a>
+        </li>
+      
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/09/5-19-aboutpython/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -501,11 +566,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">life</a>
+                <a href="javascript:void(0)" class="color1">technology</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color1">technology</a>
+                <a href="javascript:void(0)" class="color5">life</a>
               </li>
             
             <div class="clearfix"></div>
